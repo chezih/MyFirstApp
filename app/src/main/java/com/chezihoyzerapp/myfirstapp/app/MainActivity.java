@@ -1,12 +1,17 @@
 package com.chezihoyzerapp.myfirstapp.app;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    public final static String EXTRA = "chezi";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,5 +37,16 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void sendMessage(View view)
+    {
+        Intent intent = new Intent(this,DisplayMessageAct.class);
+
+        EditText editText = (EditText)findViewById(R.id.edit_message);
+        String message = editText.getText().toString();
+        intent.putExtra(EXTRA,message);
+
+        startActivity(intent);
     }
 }
